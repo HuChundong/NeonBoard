@@ -3,8 +3,12 @@
 NSString *shadowPath;
 
 @interface SBIconView : UIView
+
+@property (nonatomic, strong) id icon;
+@property (nonatomic, assign) bool allowsLabelArea; 
 @property (nonatomic, retain) CALayer *shadowLayer;
 - (void)neon_setupShadow;
+- (BOOL)_hasWidget;
 @end
 
 %hook SBIconView
@@ -15,7 +19,7 @@ NSString *shadowPath;
 - (void)neon_setupShadow {
   UIImage *shadowImage = [UIImage imageWithContentsOfFile:shadowPath];
   // TODO FIX SCALING
-  self.shadowLayer = [CALayer layer];
+  self.shadowLayer = [%c(CALayer) layer];
   self.shadowLayer.frame = CGRectMake(0, 0, shadowImage.size.width, shadowImage.size.height);
   self.shadowLayer.position = CGPointMake(self.layer.bounds.size.width / 2, self.layer.bounds.size.width / 2);
   self.shadowLayer.contents = (id)shadowImage.CGImage;
@@ -25,6 +29,7 @@ NSString *shadowPath;
 // 13+
 - (instancetype)initWithConfigurationOptions:(NSUInteger)options listLayoutProvider:(id)provider {
   if (options != 0) return %orig;
+  //NSLog(@"PerfectTimeX parent %@", NSStringFromClass([self class])); 
   self = %orig;
   // check if it's SBIconView because on iOS 14 in the app library there's SBHLibraryCategoryPodIconView and we don't want the shadows there
   if ([NSStringFromClass([self class]) isEqualToString:@"SBIconView"]) [self neon_setupShadow];
@@ -51,6 +56,11 @@ NSString *shadowPath;
   %orig;
   [self.shadowLayer removeFromSuperlayer];
   [self.layer insertSublayer:self.shadowLayer atIndex:0];
+  //NSLog(@"PerfectTimeX layoutSubviews %s", [self.icon isMemberOfClass:%c(SBWidgetIcon)]?"yes":"no"); 
+  if (self.icon != nil && [self.icon isMemberOfClass:%c(SBWidgetIcon)]) {
+    [self.shadowLayer removeFromSuperlayer];
+    //NSLog(@"PerfectTimeX layoutSubviews %s", "contents nil"); 
+  }
 }
 
 %end
