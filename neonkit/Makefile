@@ -1,7 +1,7 @@
 include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = NeonKit
-
+NeonKit_FRAMEWORKS = UIKit CoreGraphics
 NeonKit_FILES = NeonImage.x NeonCacheManager.m Assets.xm LegacyFixup.x StatusBar11Later.xm SwitchesSliders13Later.x MasksWorkaround.x
 NeonKit_CFLAGS = -fobjc-arc
 

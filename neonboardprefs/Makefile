@@ -4,7 +4,7 @@ BUNDLE_NAME = neonboardprefs
 
 neonboardprefs_FILES = NBPShared.m NBPRootListController.m NBPThemingOptionsController.m NBPThemeCell.m NBPThemeListController.m NBPCustomizationController.m PSSearchableListController.m NBPOverridesController.m NBPSelectAppController.m NBPSelectThemeController.m NBPSelectIconController.m
 neonboardprefs_INSTALL_PATH = /Library/PreferenceBundles
-neonboardprefs_FRAMEWORKS = UIKit
+neonboardprefs_FRAMEWORKS = UIKit CoreGraphics
 neonboardprefs_PRIVATE_FRAMEWORKS = Preferences AppSupport
 neonboardprefs_CFLAGS = -fobjc-arc -Wall
 

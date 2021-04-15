@@ -29,7 +29,7 @@ void addCustomBackgroundToInstance(SBDockView *self) {
       if ((self.overlayImage = [UIImage imageNamed:name inBundle:[NSBundle bundleWithPath:overlayPath]])) {
         // this one line of code took two days 2-4 hours each to figure out. aight imma head out lmfaoooooo
         self.overlayImage = [UIImage imageWithCGImage:self.overlayImage.CGImage scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
-        self.overlayLayer = [CALayer layer];
+        self.overlayLayer = [%c(CALayer) layer];
         self.overlayLayer.contents = (id)self.overlayImage.CGImage;
         MSHookIvar<UIView *>(self, "_backgroundView").hidden = YES;
         [self.layer insertSublayer:self.overlayLayer atIndex:0];
@@ -42,7 +42,7 @@ void addCustomBackgroundToInstance(SBDockView *self) {
     for (NSString *name in maskNames) {
       if ((self.maskImage = [UIImage imageNamed:name inBundle:[NSBundle bundleWithPath:maskPath]])) {
         self.maskImage = [UIImage imageWithCGImage:self.maskImage.CGImage scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
-        self.maskLayer = [CALayer layer];
+        self.maskLayer = [%c(CALayer) layer];
         self.maskLayer.contents = (id)self.maskImage.CGImage;
         MSHookIvar<UIView *>(self, "_backgroundView").layer.mask = self.maskLayer;
         break;

@@ -1,6 +1,6 @@
 export DEBUG = 0
 export FINALPACKAGE = 1
-export ARCHS = armv7 arm64 arm64e
+export ARCHS = arm64 arm64e
 #export ARCHS = arm64
 export TARGET = iphone:clang:latest:7.0
 
@@ -15,7 +15,7 @@ include $(THEOS)/makefiles/common.mk
 TWEAK_NAME = NeonBoard
 
 NeonBoard_FILES = UIColor+CSSColors.m NeonLabelRenderService.m Clock.xm Calendar.x MasksSB.xm Badges.x PageDots.x IconShadows.xm IconLabels.x Dock.xm Customizations.xm Folders.xm
-NeonBoard_FRAMEWORKS = UIKit
+NeonBoard_FRAMEWORKS = UIKit CoreGraphics
 NeonBoard_PRIVATE_FRAMEWORKS = AppSupport
 NeonBoard_CFLAGS = -fobjc-arc -Wall
 

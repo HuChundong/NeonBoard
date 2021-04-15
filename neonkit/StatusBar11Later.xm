@@ -32,7 +32,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
   self = %orig;
-  self.customLayer = [CALayer layer];
+  self.customLayer = [%c(CALayer) layer];
   self.assetManager = [%c(_UIAssetManager) assetManagerForBundle:nil];
   return self;
 }
@@ -93,11 +93,11 @@
 - (instancetype)initWithFrame:(CGRect)frame {
   self = %orig;
   self.assetManager = [%c(_UIAssetManager) assetManagerForBundle:nil];
-  self.customBodyLayer = [CALayer layer];
+  self.customBodyLayer = [%c(CALayer) layer];
   self.customBodyImage = [[self.assetManager neonImageNamed:@"Black_BatteryDrainingBG" originalImage:nil configuration:nil] _flatImageWithColor:self.bodyColor];
   self.customBodyLayer.contents = (id)self.customBodyImage.CGImage;
   [self.layer addSublayer:self.customBodyLayer];
-  self.customFillLayer = [CALayer layer];
+  self.customFillLayer = [%c(CALayer) layer];
   self.customFillImage = [[self.assetManager neonImageNamed:@"Black_BatteryDrainingInsides" originalImage:nil configuration:nil] _flatImageWithColor:[self _batteryFillColor]];
   self.customFillLayer.contents = (id)self.customFillImage.CGImage;
   UIImage *maskImage = [[self.assetManager neonImageNamed:@"Black_BatteryDrainingInsides" originalImage:nil configuration:nil] _flatImageWithColor:[UIColor blackColor]];
@@ -105,12 +105,12 @@
   [maskImage drawInRect:CGRectMake(0, 0, maskImage.size.width, maskImage.size.height) blendMode:kCGBlendModeNormal alpha:1.0f];
   maskImage = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
-  CALayer *mask = [CALayer layer];
+  CALayer *mask = [%c(CALayer) layer];
   mask.frame = CGRectMake(0, 0, self.customBodyImage.size.width, self.customBodyImage.size.height);
   mask.contents = (id)maskImage.CGImage;
   self.customFillLayer.mask = mask;
   [self.layer addSublayer:self.customFillLayer];
-  self.customBoltLayer = [CALayer layer];
+  self.customBoltLayer = [%c(CALayer) layer];
   self.customBoltImage = [[self.assetManager neonImageNamed:@"Black_BatteryChargingAccessory" originalImage:nil configuration:nil] _flatImageWithColor:self.bodyColor];
   self.customBoltLayer.contents = (id)self.customBoltImage.CGImage;
   self.customBoltLayer.hidden = self.chargingState != 0;
@@ -145,11 +145,11 @@
 - (instancetype)initWithFrame:(CGRect)frame {
   self = %orig;
   self.assetManager = [%c(_UIAssetManager) assetManagerForBundle:nil];
-  self.customBodyLayer = [CALayer layer];
+  self.customBodyLayer = [%c(CALayer) layer];
   self.customBodyImage = [[self.assetManager neonImageNamed:@"Black_BatteryDrainingBG" originalImage:nil configuration:nil] _flatImageWithColor:self.bodyColor];
   self.customBodyLayer.contents = (id)self.customBodyImage.CGImage;
   [self.layer addSublayer:self.customBodyLayer];
-  self.customFillLayer = [CALayer layer];
+  self.customFillLayer = [%c(CALayer) layer];
   self.customFillImage = [[self.assetManager neonImageNamed:@"Black_BatteryDrainingInsides" originalImage:nil configuration:nil] _flatImageWithColor:[self _batteryFillColor]];
   self.customFillLayer.contents = (id)self.customFillImage.CGImage;
   UIImage *maskImage = [[self.assetManager neonImageNamed:@"Black_BatteryDrainingInsides" originalImage:nil configuration:nil] _flatImageWithColor:[UIColor blackColor]];
@@ -157,12 +157,12 @@
   [maskImage drawInRect:CGRectMake(0, 0, maskImage.size.width, maskImage.size.height) blendMode:kCGBlendModeNormal alpha:1.0f];
   maskImage = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
-  CALayer *mask = [CALayer layer];
+  CALayer *mask = [%c(CALayer) layer];
   mask.frame = CGRectMake(0, 0, self.customBodyImage.size.width, self.customBodyImage.size.height);
   mask.contents = (id)maskImage.CGImage;
   self.customFillLayer.mask = mask;
   [self.layer addSublayer:self.customFillLayer];
-  self.customBoltLayer = [CALayer layer];
+  self.customBoltLayer = [%c(CALayer) layer];
   self.customBoltImage = [[self.assetManager neonImageNamed:@"Black_BatteryChargingAccessory" originalImage:nil configuration:nil] _flatImageWithColor:self.boltColor];
   self.customBoltLayer.contents = (id)self.customBoltImage.CGImage;
   self.customBoltLayer.hidden = self.chargingState != 0;

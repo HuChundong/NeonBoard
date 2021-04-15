@@ -6,6 +6,5 @@ TWEAK_NAME = NeonRenderService
 
 NeonRenderService_FILES = NeonRenderService.x
 NeonRenderService_CFLAGS = -fobjc-arc
-NeonRenderService_FRAMEWORKS = UIKit
-
+NeonRenderService_FRAMEWORKS = UIKit CoreGraphics ImageIO
 include $(THEOS_MAKE_PATH)/tweak.mk

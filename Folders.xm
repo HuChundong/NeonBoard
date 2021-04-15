@@ -84,7 +84,7 @@ NSString *backgroundBasePath;
 
 - (instancetype)initWithDefaultSize {
   self = %orig;
-  self.customLayer = [CALayer layer];
+  self.customLayer = [%c(CALayer) layer];
   self.customLayer.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
   [self.layer insertSublayer:self.customLayer atIndex:0];
   if (UIImage *customBackground = [UIImage imageNamed:@"ANEMFolderIconBG" inBundle:[NSBundle bundleWithPath:iconBasePath]]) {
@@ -123,7 +123,7 @@ NSString *backgroundBasePath;
   self = %orig;
   for (UIView *view in self.subviews) [view removeFromSuperview];
     if (UIImage *customBackground = [UIImage imageNamed:@"ANEMFolderBackground" inBundle:[NSBundle bundleWithPath:backgroundBasePath]]) {
-      self.customLayer = [CALayer layer];
+      self.customLayer = [%c(CALayer) layer];
       self.customLayer.contents = (id)customBackground.CGImage;
       [self.layer insertSublayer:self.customLayer atIndex:0];
     }

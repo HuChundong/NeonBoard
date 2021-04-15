@@ -19,7 +19,7 @@
 
 - (void)setBackgroundView:(UIView *)backgroundView {
   UIImage *mask = [%c(Neon) getMaskImage];
-  CALayer *layer = [CALayer layer];
+  CALayer *layer = [%c(CALayer) layer];
   layer.frame = backgroundView.bounds;
   layer.contents = (id)[mask CGImage];
   UIView *customView = backgroundView;
@@ -38,7 +38,7 @@
   self = %orig;
   UIView *backgroundView = MSHookIvar<UIView *>(self, "_backgroundView");
   UIImage *mask = [%c(Neon) getMaskImage];
-  CALayer *layer = [CALayer layer];
+  CALayer *layer = [%c(CALayer) layer];
   layer.frame = backgroundView.bounds;
   layer.contents = (id)[mask CGImage];
   backgroundView.layer.mask = layer;
@@ -66,7 +66,7 @@
 %hook SBIconImageCrossfadeView
 
 - (void)_updateCornerMask {
-  CALayer *mask = [CALayer layer];
+  CALayer *mask = [%c(CALayer) layer];
   mask.contents = (id)[[%c(Neon) getMaskImage] CGImage];
   mask.frame = CGRectMake(0, 0, 60, 60);
   self.layer.masksToBounds = YES;
